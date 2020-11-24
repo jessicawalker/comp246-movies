@@ -1,0 +1,26 @@
+{
+    "name": "lab10_assignment",
+    "version": "1.0.0",
+    "description": "Lab 10 assignment for Express.js",
+    "main": "app.js",
+    "dependencies": {
+        "express": "^4.17.1"
+    },
+    "scripts": {
+        "start": "node app/app.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/jessicawalker/Brookdale-Fall2020-COMP246.git",
+        "directory": "lab10_assignment"
+    },
+    "keywords": [
+        "express",
+        "node",
+        "javascript",
+        "server"
+    ],
+    "author": "Jessica Walker",
+    "license": "ISC"
+}
