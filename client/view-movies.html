@@ -6,8 +6,9 @@
 
     <meta charset="utf-8">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
     <script src="/client/js/config.js"></script>
-    <script src="/client/js/browse-movies.js" defer></script>
+    <script src="/client/js/view-movies.js" defer></script>
     <link rel="stylesheet" href="css/all.css">
     <link rel="stylesheet" href="css/browse-movies.css">
     <link href="https://fonts.googleapis.com/css?family=Amaranth&family=Open+Sans" rel="stylesheet">
@@ -36,8 +37,50 @@
             </header>
 
             <main>
+                <section data-ng-app="viewMoviesApp" data-ng-controller="viewMoviesController">
+                    <div>
+                        <label for="ID">ID: </label>
+                        <label id="ID">{{ obj.ID }}</label>
+                    </div>
+                    <div>
+                        <label for="rank">Rank: </label>
+                        <label id="rank">{{ obj.rank }}</label>
+                    </div>
+                    <div>
+                        <label for="movieTitle">Movie Title: </label>
+                        <label id="movieTitle">{{ obj.movieTitle }}</label>
+                    </div>
+                    <div>
+                        <label for="year">Year: </label>
+                        <label id="year">{{ obj.year }}</label>
+                    </div>
+                    <div>
+                        <label for="director">Director: </label>
+                        <label id="director">{{ obj.director }}</label>
+                    </div>
+                    <div>
+                        <label for="rating">Rating: </label>
+                        <label id="rating">{{ obj.rating }}</label>
+                    </div>
+                    <div>
+                        <label for="users">Users: </label>
+                        <label id="users">{{ obj.users }}</label>
+                    </div>
+
+                    <div style="float:left; margin-top:30px">
+                        <div style="float:left">
+                            <button id="previous" data-ng-click="changeMovie(-1)" data-ng-hide="hidePrev">&lt;&lt;&lt; Previous</button>
+                        </div>
+                        <div style="float:left;">
+                            <button id="next" data-ng-click="changeMovie(1)" data-ng-hide="hideNext">Next &gt;&gt;&gt;</button>
+                        </div>
+                    </div>
+                </section>
+
+
             </main>
         </div>
     </div>
 </body>
+
 </html>
