@@ -10,7 +10,7 @@
     <script src="/client/js/config.js"></script>
     <script src="/client/js/view-movies.js" defer></script>
     <link rel="stylesheet" href="css/all.css">
-    <link rel="stylesheet" href="css/browse-movies.css">
+    <link rel="stylesheet" href="css/view-movies.css">
     <link href="https://fonts.googleapis.com/css?family=Amaranth&family=Open+Sans" rel="stylesheet">
 </head>
 
@@ -37,7 +37,7 @@
             </header>
 
             <main>
-                <section data-ng-app="viewMoviesApp" data-ng-controller="viewMoviesController">
+                <section data-ng-app="viewMoviesApp" data-ng-controller="viewMoviesController" id="viewMoviesApp">
                     <div>
                         <label for="ID">ID: </label>
                         <label id="ID">{{ obj.ID }}</label>
