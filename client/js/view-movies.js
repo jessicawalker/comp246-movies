@@ -11,12 +11,13 @@ app.controller("viewMoviesController", function($scope, $http) {
             method: "GET",
             url: "http://localhost:5500/read-records"
         }).then(function(response) {
-            if (response.data.msg === "SUCCESS") {
-                movies = response.data.movies;
+            if (response.statusText === "OK") {
+                movies = response.data;
                 $scope.obj = movies[activeMovie];
                 $scope.showHide();
             } else {
-                $scope.addResults = response.data.msg;
+                console.log(response);
+                $scope.addResults = response.statusText;
             }
         }, function(response) {
             console.log(response);
