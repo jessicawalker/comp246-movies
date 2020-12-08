@@ -5,12 +5,8 @@ var outputFile = path.join(__dirname + "/files/movies.txt");
 // Service listeners
 var services = function(app) {
     app.post("/write-record", function(req, res) {
-        var data = req.body.data; // brings in one json object
+        var data = JSON.parse(req); // brings in one json object
         if (data == undefined) {
-            console.log("Error: " + data);
-            console.log("Error: " + req);
-            console.log("Error: " + req.body);
-            console.log("Error: " + req.body.data);
             return;
         }
 
