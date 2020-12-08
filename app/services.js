@@ -4,9 +4,15 @@ var outputFile = path.join(__dirname + "/files/movies.txt");
 
 // Service listeners
 var services = function(app) {
-    // takes in data from activateSubmitButton() in movies.js
     app.post("/write-record", function(req, res) {
         var data = req.body.data; // brings in one json object
+        if (data == undefined) {
+            console.log("Error: " + data);
+            console.log("Error: " + req);
+            console.log("Error: " + req.body);
+            console.log("Error: " + req.body.data);
+            return;
+        }
 
         // makes sure each movie entry/JSON object is delineated from each other
         if (fs.existsSync(outputFile)) {
