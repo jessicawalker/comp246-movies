@@ -27,5 +27,5 @@ server = app.listen(port, function(err) {
     if (err) {
         throw err;
     }
-    console.log("Listening on port " + port)
+    console.log("Listening on port " + port);
 });
