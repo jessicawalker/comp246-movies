@@ -1,75 +1,104 @@
-const fs = require("fs");
-const path = require("path");
-var outputFile = path.join(__dirname + "/files/movies.txt");
+const MongoClient = require("mongodb").MongoClient;
+const ObjectId = require("mongodb").ObjectId;
+
+const dbURL = process.env.DB_URI || "mongodb://localhost";
+
 
 // Service listeners
 var services = function(app) {
     app.post("/write-record", function(req, res) {
-        var data = req.body.data;
-        if (data == undefined) {
-            return;
-        }
 
-        // makes sure each movie entry/JSON object is delineated from each other
-        if (fs.existsSync(outputFile)) {
-            data = ",\n" + data;
-        }
-
-        // outputFile gets new movie entry/JSON object, to be used by app.get("/read-records")
-        fs.appendFile(outputFile, data, function(err) {
+        MongoClient.connect(dbURL, { useUnifiedTopology: true }, function(err, client) {
             if (err) {
-                res.send(err);
+                return res.status(200).send(JSON.stringify({ msg: "Error: " + err }));
             } else {
-                console.log("Record added successfully");
+                var dbo = client.db("movies");
+
+                dbo.collection("moviedata").insertOne(newMovie, function(err, res) {
+                    if (err) {
+                        client.close();
+                        return res.status(200).send(JSON.stringify({ msg: "Error: " + err }));
+                    } else {
+                        client.close();
+                        return res.status(200).send(JSON.stringify({ msg: "SUCCESS" }));
+                    }
+                });
             }
         });
     });
 
     // reads JSON objects from outputFile, to be used by getMovieData() in movies.js
     app.get("/read-records", function(req, res) {
-        fs.readFile(outputFile, "utf8", function(err, data) {
-            if (err) {
-                res.send(err);
-            } else {
-                data = "[" + data + "]";
-                res.send(data);
 
-                var parsedData = JSON.parse(data);
+        MongoClient.connect(dbURL, { useUnifiedTopology: true }, function(err, client) {
+            if (err) {
+                return res.status(200).send(JSON.stringify({ msg: "Error: " + err }));
+            } else {
+                var dbo = client.db("movies");
+
+                dbo.collection("moviedata").find().toArray(function(err, data) {
+                    if (err) {
+                        client.close();
+                        return res.status(200).send(JSON.stringify({ msg: "Error: " + err }));
+                    } else {
+                        client.close();
+                        return res.status(200).send(JSON.stringify({ msg: "SUCCESS", moviedata: data }));
+                    }
+                });
+            }
+        });
+    });
+
+    app.get("get-moviesByType", function(req, res) {
+        var type = req.query.type;
+        var search = (type === "") ? {} : { type: type };
+        var sortBy = { name: 1 };
+
+        MongoClient.connect(dbURL, { useUnifiedTopology: true }, function(err, client) {
+            if (err) {
+                return res.status(200).send(JSON.stringify({ msg: "Error: " + err }));
+            } else {
+                var dbo = client.db("movies");
+
+                dbo.collection("moviedata").find(search).sort(sortBy).toArray(function(err, data) {
+                    if (err) {
+                        client.close();
+                        return res.status(200).send(JSON.stringify({ msg: "Error: " + err }));
+                    } else {
+                        client.close();
+                        return res.status(200).send(JSON.stringify({ msg: "SUCCESS", moviedata: data }));
+                    }
+                });
             }
         });
     });
 
     // remove a record
     app.delete("/delete-record", function(req, res) {
-        var itemID = req.body.data;
-        fs.readFile(outputFile, "utf8", function(err, data) {
+        var movieID = req.query.movieID;
+
+        var s_id = new ObjectId(movieID);
+        var search = { _id: s_id };
+
+        MongoClient.connect(dbURL, { useUnifiedTopology: true }, function(err, client) {
             if (err) {
-                res.send(err);
+                return res.status(200).send(JSON.stringify({ msg: "Error: " + err }));
             } else {
-                data = "[" + data + "]";
+                var dbo = client.db("movies");
 
-                var parsedData = JSON.parse(data);
-                for (var i = 0; i < parsedData.length; i++) {
-                    if (itemID == parsedData[i].ID) {
-                        parsedData.splice(i, 1);
-                        break;
-                    }
-                }
-                var stringData = JSON.stringify(parsedData);
-                var updatedData = stringData.substring(1, stringData.length - 1);
-
-                fs.writeFile(outputFile, updatedData, (err) => {
+                dbo.collection("moviedata"), deleteOne(search, function(err, res) {
                     if (err) {
-                        console.log(err);
+                        return res.status(200).send(JSON.stringify({ msg: "Error: " + err }));
                     } else {
-                        console.log("Record " + itemID + " deleted successfully");
+                        client.close();
+                        return res.status(200).send(JSON.stringify({ msg: "SUCCESS" }));
                     }
                 });
-
-                res.status(204);
             }
         });
     });
+
+    app.put();
 };
 
 module.exports = services;
