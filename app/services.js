@@ -8,6 +8,15 @@ const dbURL = process.env.DB_URI || "mongodb://localhost";
 var services = function(app) {
     app.post("/write-record", function(req, res) {
 
+        var newMovie = {
+            rank: req.body.rank,
+            movieTitle: req.body.movieTitle,
+            year: req.body.year,
+            director: req.body.director,
+            rating: req.body.rating,
+            users: req.body.users
+        };
+
         MongoClient.connect(dbURL, { useUnifiedTopology: true }, function(err, client) {
             if (err) {
                 return res.status(200).send(JSON.stringify({ msg: "Error: " + err }));
@@ -27,7 +36,6 @@ var services = function(app) {
         });
     });
 
-    // reads JSON objects from outputFile, to be used by getMovieData() in movies.js
     app.get("/read-records", function(req, res) {
 
         MongoClient.connect(dbURL, { useUnifiedTopology: true }, function(err, client) {
@@ -49,10 +57,10 @@ var services = function(app) {
         });
     });
 
-    app.get("get-moviesByType", function(req, res) {
-        var type = req.query.type;
-        var search = (type === "") ? {} : { type: type };
-        var sortBy = { name: 1 };
+    app.get("/get-moviesByYear", function(req, res) {
+        var year = req.query.year;
+        var search = (year === "") ? {} : { year: year };
+        var sortBy = { rank: 1 };
 
         MongoClient.connect(dbURL, { useUnifiedTopology: true }, function(err, client) {
             if (err) {
@@ -98,7 +106,7 @@ var services = function(app) {
         });
     });
 
-    app.put();
+    //app.put();
 };
 
 module.exports = services;

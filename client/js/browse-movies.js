@@ -1,5 +1,88 @@
 // retrieve the movie data and populate on page load, sent by app.get("/read-records")
 
+var app = angular.module("moviesTableApp", []);
+
+app.controller("moviesTableController", function($scope, $http) {
+    $scope.movies = [];
+    $scope.years = [];
+
+    $scope.get_movies = function() {
+        $http({
+            method: "GET",
+            url: "http://localhost:5500/get-movies"
+        }).then(function(response) {
+            if (response.data.msg === "SUCCESS") {
+                $scope.movies = response.data.movies;
+                $scope.years = getYears(response.data.movies);
+                $scope.selectedYear = $scope.years[0];
+            } else {
+                console.log(response.data.msg);
+            }
+        }, function(response) {
+            console.log(response);
+        });
+    };
+
+    $scope.get_movies();
+
+    $scope.redrawTable = function() {
+        var year = $scope.selectedYear.value;
+
+        $http({
+            method: "GET",
+            url: "http://localhost:5500/get-moviesByYear",
+            params: { year: year }
+        }).then(function(response) {
+            if (response.data.msg === "SUCCESS") {
+                $scope.movies = response.data.movies;
+            } else {
+                console.log(response.data.msg);
+            }
+        }, function(response) {
+            console.log(response);
+        });
+    };
+
+    $scope.deleteMovie = function(movieName) {
+        $http({
+            method: "DELETE",
+            url: "http://localhost:5500/delete-movie",
+            params: { name: movieName }
+        }).then(function(response) {
+            if (response.data.msg === "SUCCESS") {
+                $scope.redrawTable();
+            } else {
+                console.log(response.data.msg);
+            }
+        }, function(response) {
+            console.log(response);
+        });
+    };
+});
+
+function getYears(movieDataArray) {
+    var yearExists;
+
+    var yearsArray = [{ value: "", display: "ALL" }];
+    for (var i = 0; i < movieDataArray.length; i++) {
+        yearExists = yearsArray.find(function(element) {
+            return element.value === movieDataArray[i].year;
+        });
+
+        if (yearExists) {
+            continue;
+        } else {
+            yearsArray.push({ value: movieDataArray[i].year, display: movieDataArray[i] });
+        }
+    }
+
+    return yearsArray;
+}
+
+
+
+
+/*
 var data;
 var keyName; // default view
 
@@ -77,4 +160,4 @@ function createMovieTable(movieData) {
             }
         });
     });
-}
+}*/

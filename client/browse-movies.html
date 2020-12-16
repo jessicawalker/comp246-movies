@@ -6,6 +6,7 @@
 
     <meta charset="utf-8">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
     <script src="/client/js/config.js"></script>
     <script src="/client/js/browse-movies.js" defer></script>
     <link rel="stylesheet" href="css/all.css">
@@ -35,24 +36,38 @@
                 <h1>IMDb Top Rated Movies</h1>
             </header>
 
-            <main>
-                <table id="movieTableFrame">
-                    <thead>
-                        <tr>
-                            <th onclick="keyName = 'ID'; reload_js('/client/js/browse-movies.js')">ID <span class="sortArrow">&blacktriangledown;</span></th>
-                            <th onclick="keyName = 'rank'; reload_js('/client/js/browse-movies.js')">Rank <span class="sortArrow">&blacktriangledown;</span></th>
-                            <th onclick="keyName = 'movieTitle'; reload_js('/client/js/browse-movies.js')">Movie Title <span class="sortArrow">&blacktriangledown;</span></th>
-                            <th onclick="keyName = 'year'; reload_js('/client/js/browse-movies.js')">Year <span class="sortArrow">&blacktriangledown;</span></th>
-                            <th onclick="keyName = 'director'; reload_js('/client/js/browse-movies.js')">Director <span class="sortArrow">&blacktriangledown;</span></th>
-                            <th onclick="keyName = 'rating'; reload_js('/client/js/browse-movies.js')">Rating <span class="sortArrow">&blacktriangledown;</span></th>
-                            <th onclick="keyName = 'users'; reload_js('/client/js/browse-movies.js')">Users <span class="sortArrow">&blacktriangledown;</span></th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody id="movieTable">
+            <main data-ng-app="browseMoviesApp" data-ng-controller="browseMoviesController" id="browseMoviesApp">
 
-                    </tbody>
-                </table>
+                <section data-ng-app="moviesTableApp" data-ng-controller="moviesTableController">
+                    <div style="margin: 30px auto; text-align:center;">
+                        <label for="groupBy">Year: </label>
+                        <select id="groupBy" data-ng-model="selectedType" data-ng-options="year.display for year in years" data-ng-change="redrawTable()"></select>
+                    </div>
+                    <div>
+                        <table>
+                            <tr>
+                                <th>Rank</th>
+                                <th>Movie Title</th>
+                                <th>Year</th>
+                                <th>Director</th>
+                                <th>Rating</th>
+                                <th>Users</th>
+                                <th></th>
+                            </tr>
+                            <tr data-ng-repeat="obj in movies">
+                                <td>{{ obj.rank }}</td>
+                                <td>{{ obj.movieTitle }}</td>
+                                <td>{{ obj.year }}</td>
+                                <td>{{ obj.director }}</td>
+                                <td>{{ obj.rating }}</td>
+                                <td>{{ obj.users }}</td>
+                                <td><button data-ng-click="deleteMovie(obj.movieTitle)">DELETE</button></td>
+                            </tr>
+                        </table>
+                    </div>
+
+                </section>
+
             </main>
         </div>
     </div>

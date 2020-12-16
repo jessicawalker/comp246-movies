@@ -1,10 +1,12 @@
 {
-    "name": "lab10_assignment",
+    "name": "comp246-movies",
     "version": "1.0.0",
-    "description": "Lab 10 assignment for Express.js",
+    "description": "comp246-movies",
     "main": "app.js",
     "dependencies": {
-        "express": "^4.17.1"
+        "cors": "^2.8.5",
+        "express": "^4.17.1",
+        "mongo": "^0.1.0"
     },
     "scripts": {
         "start": "node app/app.js",
@@ -12,12 +14,14 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/jessicawalker/Brookdale-Fall2020-COMP246.git",
-        "directory": "lab10_assignment"
+        "url": "https://github.com/jessicawalker/comp246-movies.git",
+        "directory": ""
     },
     "keywords": [
         "express",
         "node",
+        "mongo",
+        "angularjs",
         "javascript",
         "server"
     ],
