@@ -9,7 +9,7 @@ app.controller("moviesTableController", function($scope, $http) {
     $scope.get_movies = function() {
         $http({
             method: "GET",
-            url: "http://localhost:5500/get-movies"
+            url: "http://localhost:5500/read-records"
         }).then(function(response) {
             if (response.data.msg === "SUCCESS") {
                 $scope.movies = response.data.movies;
@@ -47,7 +47,7 @@ app.controller("moviesTableController", function($scope, $http) {
         $http({
             method: "DELETE",
             url: "http://localhost:5500/delete-movie",
-            params: { name: movieName }
+            params: { movieID: movieID }
         }).then(function(response) {
             if (response.data.msg === "SUCCESS") {
                 $scope.redrawTable();

@@ -23,7 +23,7 @@ var services = function(app) {
             } else {
                 var dbo = client.db("movies");
 
-                dbo.collection("moviedata").insertOne(newMovie, function(err, res) {
+                dbo.collection("moviedata").insertOne(newMovie, function(err, response) {
                     if (err) {
                         client.close();
                         return res.status(200).send(JSON.stringify({ msg: "Error: " + err }));
