@@ -11,8 +11,8 @@ app.controller("viewMoviesController", function($scope, $http) {
             method: "GET",
             url: moviesURL + "/read-records"
         }).then(function(response) {
-            if (response.statusText === "OK") {
-                movies = response.data;
+            if (response.data.msg === "SUCCESS") {
+                movies = response.data.moviedata;
                 $scope.obj = movies[activeMovie];
                 $scope.showHide();
             } else {

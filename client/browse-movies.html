@@ -40,7 +40,7 @@
                 <section data-ng-app="moviesTableApp" data-ng-controller="moviesTableController">
                     <div style="margin: 30px auto; text-align:center;">
                         <label for="groupBy">Director: </label>
-                        <select id="groupBy" data-ng-model="selectedType" data-ng-options="director.display for director in directors" data-ng-change="redrawTable()"></select>
+                        <select id="groupBy" data-ng-model="selectedDirector" data-ng-options="director.display for director in directors" data-ng-change="redrawTable()"></select>
                     </div>
                     <div>
                         <table>
@@ -53,14 +53,14 @@
                                 <th>Users</th>
                                 <th></th>
                             </tr>
-                            <tr data-ng-repeat="obj in movies">
-                                <td>{{ obj.rank }}</td>
-                                <td>{{ obj.movieTitle }}</td>
-                                <td>{{ obj.year }}</td>
-                                <td>{{ obj.director }}</td>
-                                <td>{{ obj.rating }}</td>
-                                <td>{{ obj.users }}</td>
-                                <td><button data-ng-click="deleteMovie(obj['_id'])">DELETE</button></td>
+                            <tr data-ng-repeat="movie in moviedata">
+                                <td>{{ movie.rank }}</td>
+                                <td>{{ movie.movieTitle }}</td>
+                                <td>{{ movie.year }}</td>
+                                <td>{{ movie.director }}</td>
+                                <td>{{ movie.rating }}</td>
+                                <td>{{ movie.users }}</td>
+                                <td><button data-ng-click="deleteMovie(movie['_id'])">DELETE</button></td>
                             </tr>
                         </table>
                     </div>

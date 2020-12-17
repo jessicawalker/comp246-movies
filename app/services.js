@@ -94,7 +94,7 @@ var services = function(app) {
             } else {
                 var dbo = client.db("movies");
 
-                dbo.collection("moviedata"), deleteOne(search, function(err, res) {
+                dbo.collection("moviedata").deleteOne(search, function(err, response) {
                     if (err) {
                         return res.status(200).send(JSON.stringify({ msg: "Error: " + err }));
                     } else {

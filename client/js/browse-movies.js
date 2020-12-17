@@ -3,7 +3,7 @@
 var app = angular.module("moviesTableApp", []);
 
 app.controller("moviesTableController", function($scope, $http) {
-    $scope.movies = [];
+    $scope.moviedata = [];
     $scope.directors = [];
 
     $scope.get_movies = function() {
@@ -13,10 +13,8 @@ app.controller("moviesTableController", function($scope, $http) {
             //url: "http://localhost:5500/read-records"
         }).then(function(response) {
             if (response.data.msg === "SUCCESS") {
-                //console.log(response.data.moviedata[2].director);
-                $scope.movies = response.data.moviedata;
+                $scope.moviedata = response.data.moviedata;
                 $scope.directors = getDirectors(response.data.moviedata);
-               // console.log($scope.directors);
                 $scope.selectedDirector = $scope.directors[0];
             } else {
                 console.log(response.data.msg);
@@ -37,7 +35,7 @@ app.controller("moviesTableController", function($scope, $http) {
             params: { director: director }
         }).then(function(response) {
             if (response.data.msg === "SUCCESS") {
-                $scope.movies = response.data.moviedata;
+                $scope.moviedata = response.data.moviedata;
             } else {
                 console.log(response.data.msg);
             }
@@ -46,10 +44,10 @@ app.controller("moviesTableController", function($scope, $http) {
         });
     };
 
-    $scope.deleteMovie = function(movieName) {
+    $scope.deleteMovie = function(movieID) {
         $http({
             method: "DELETE",
-            url: moviesURL + "/delete-movie",
+            url: moviesURL + "/delete-record",
             params: { movieID: movieID }
         }).then(function(response) {
             if (response.data.msg === "SUCCESS") {
@@ -68,7 +66,6 @@ function getDirectors(movieDataArray) {
 
     var directorsArray = [{ value: "", display: "ALL" }];
     for (var i = 0; i < movieDataArray.length; i++) {
-        console.log(movieDataArray[i]);
         directorExists = directorsArray.find(function(element) {
             return element.value === movieDataArray[i].director;
         });
@@ -76,7 +73,7 @@ function getDirectors(movieDataArray) {
         if (directorExists) {
             continue;
         } else {
-            directorsArray.push({ value: movieDataArray[i].director, display: movieDataArray[i] });
+            directorsArray.push({ value: movieDataArray[i].director, display: movieDataArray[i].director });
         }
     }
 
