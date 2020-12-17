@@ -57,9 +57,9 @@ var services = function(app) {
         });
     });
 
-    app.get("/get-moviesByYear", function(req, res) {
-        var year = req.query.year;
-        var search = (year === "") ? {} : { year: year };
+    app.get("/get-moviesByDirector", function(req, res) {
+        var director = req.query.director;
+        var search = (director === "") ? {} : { director: director };
         var sortBy = { rank: 1 };
 
         MongoClient.connect(dbURL, { useUnifiedTopology: true }, function(err, client) {
