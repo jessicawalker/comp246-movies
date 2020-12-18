@@ -10,7 +10,7 @@ app.controller("moviesTableController", function($scope, $http) {
         $http({
             method: "GET",
             url: moviesURL + "/read-records"
-            //url: "http://localhost:5500/read-records"
+                //url: "http://localhost:5500/read-records"
         }).then(function(response) {
             if (response.data.msg === "SUCCESS") {
                 $scope.moviedata = response.data.moviedata;
@@ -58,6 +58,58 @@ app.controller("moviesTableController", function($scope, $http) {
         }, function(response) {
             console.log(response);
         });
+    };
+
+    $scope.editSpell = function(movieNumber) {
+        $scope.rank = $scope.moviedata[movieNumber].rank;
+        $scope.movieTitle = $scope.moviedata[movieNumber].movieTitle;
+        $scope.year = $scope.moviedata[movieNumber].year;
+        $scope.director = $scope.moviedata[movieNumber].director;
+        $scope.rating = $scope.moviedata[movieNumber].rating;
+        $scope.users = $scope.moviedata[movieNumber].users;
+        $scope.movieID = $scope.moviedata[movieNumber]['_id'];
+
+        $scope.hideTable = true;
+        $scope.hideForm = false;
+    }
+
+    $scope.updateMovie = function(movieNumber) {
+        $http({
+            method: "PUT",
+            url: moviesURL + "/update-record",
+            data: {
+                movieID: $scope.movieID,
+                rank: $scope.rank,
+                movieTitle: $scope.movieTitle,
+                year: $scope.year,
+                director: $scope.director,
+                rating: $scope.rating,
+                users: $scope.users
+            }
+        }).then(function(response) {
+            if (response.data.msg === "SUCCESS") {
+                $scope.redrawTable();
+                $scope.closeForm();
+            } else {
+                console.log(response.data.msg);
+            }
+
+        }, function(response) {
+            console.log(response);
+        });
+    };
+
+    $scope.closeForm = function(movieNumber) {
+        $scope.hideForm = true;
+        $scope.hideTable = false;
+
+        $scope.rank = "";
+        $scope.movieTitle = "";
+        $scope.year = "";
+        $scope.director = "";
+        $scope.rating = "";
+        $scope.users = "";
+
     };
 });
 
