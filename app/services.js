@@ -115,7 +115,7 @@ var services = function(app) {
         var rating = req.body.rating;
         var users = req.body.users;
 
-        var s_id = new Object(movieID);
+        var s_id = new ObjectId(movieID);
 
         var search = { _id: s_id };
         console.log(search);
