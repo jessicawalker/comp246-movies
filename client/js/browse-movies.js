@@ -60,7 +60,7 @@ app.controller("moviesTableController", function($scope, $http) {
         });
     };
 
-    $scope.editSpell = function(movieNumber) {
+    $scope.editMovie = function(movieNumber) {
         $scope.rank = $scope.moviedata[movieNumber].rank;
         $scope.movieTitle = $scope.moviedata[movieNumber].movieTitle;
         $scope.year = $scope.moviedata[movieNumber].year;

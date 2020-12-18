@@ -62,7 +62,7 @@
                                 <td>{{ movie.rating }}</td>
                                 <td>{{ movie.users }}</td>
                                 <td class="edit_button"><button data-ng-click="editMovie($index)">EDIT</button></td>
-                                <td class="delete_button"><button data-ng-click="deleteMovie(obj.movieTitle)">DELETE</button></td>
+                                <td class="delete_button"><button data-ng-click="deleteMovie(movie['_id'])">DELETE</button></td>
                             </tr>
                         </table>
                     </div>
