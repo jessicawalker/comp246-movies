@@ -3,18 +3,19 @@
 var app = angular.module("moviesTableApp", []);
 
 app.controller("moviesTableController", function($scope, $http) {
-    $scope.movies = [];
-    $scope.years = [];
+    $scope.moviedata = [];
+    $scope.directors = [];
 
     $scope.get_movies = function() {
         $http({
             method: "GET",
-            url: "http://localhost:5500/get-movies"
+            url: moviesURL + "/read-records"
+            //url: "http://localhost:5500/read-records"
         }).then(function(response) {
             if (response.data.msg === "SUCCESS") {
-                $scope.movies = response.data.movies;
-                $scope.years = getYears(response.data.movies);
-                $scope.selectedYear = $scope.years[0];
+                $scope.moviedata = response.data.moviedata;
+                $scope.directors = getDirectors(response.data.moviedata);
+                $scope.selectedDirector = $scope.directors[0];
             } else {
                 console.log(response.data.msg);
             }
@@ -26,15 +27,15 @@ app.controller("moviesTableController", function($scope, $http) {
     $scope.get_movies();
 
     $scope.redrawTable = function() {
-        var year = $scope.selectedYear.value;
+        var director = $scope.selectedDirector.value;
 
         $http({
             method: "GET",
-            url: "http://localhost:5500/get-moviesByYear",
-            params: { year: year }
+            url: moviesURL + "/get-moviesByDirector",
+            params: { director: director }
         }).then(function(response) {
             if (response.data.msg === "SUCCESS") {
-                $scope.movies = response.data.movies;
+                $scope.moviedata = response.data.moviedata;
             } else {
                 console.log(response.data.msg);
             }
@@ -43,11 +44,11 @@ app.controller("moviesTableController", function($scope, $http) {
         });
     };
 
-    $scope.deleteMovie = function(movieName) {
+    $scope.deleteMovie = function(movieID) {
         $http({
             method: "DELETE",
-            url: "http://localhost:5500/delete-movie",
-            params: { name: movieName }
+            url: moviesURL + "/delete-record",
+            params: { movieID: movieID }
         }).then(function(response) {
             if (response.data.msg === "SUCCESS") {
                 $scope.redrawTable();
@@ -60,23 +61,23 @@ app.controller("moviesTableController", function($scope, $http) {
     };
 });
 
-function getYears(movieDataArray) {
-    var yearExists;
+function getDirectors(movieDataArray) {
+    var directorExists;
 
-    var yearsArray = [{ value: "", display: "ALL" }];
+    var directorsArray = [{ value: "", display: "ALL" }];
     for (var i = 0; i < movieDataArray.length; i++) {
-        yearExists = yearsArray.find(function(element) {
-            return element.value === movieDataArray[i].year;
+        directorExists = directorsArray.find(function(element) {
+            return element.value === movieDataArray[i].director;
         });
 
-        if (yearExists) {
+        if (directorExists) {
             continue;
         } else {
-            yearsArray.push({ value: movieDataArray[i].year, display: movieDataArray[i] });
+            directorsArray.push({ value: movieDataArray[i].director, display: movieDataArray[i].director });
         }
     }
 
-    return yearsArray;
+    return directorsArray;
 }
 
 

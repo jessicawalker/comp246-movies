@@ -23,7 +23,7 @@ var services = function(app) {
             } else {
                 var dbo = client.db("movies");
 
-                dbo.collection("moviedata").insertOne(newMovie, function(err, res) {
+                dbo.collection("moviedata").insertOne(newMovie, function(err, response) {
                     if (err) {
                         client.close();
                         return res.status(200).send(JSON.stringify({ msg: "Error: " + err }));
@@ -57,9 +57,9 @@ var services = function(app) {
         });
     });
 
-    app.get("/get-moviesByYear", function(req, res) {
-        var year = req.query.year;
-        var search = (year === "") ? {} : { year: year };
+    app.get("/get-moviesByDirector", function(req, res) {
+        var director = req.query.director;
+        var search = (director === "") ? {} : { director: director };
         var sortBy = { rank: 1 };
 
         MongoClient.connect(dbURL, { useUnifiedTopology: true }, function(err, client) {
@@ -94,7 +94,7 @@ var services = function(app) {
             } else {
                 var dbo = client.db("movies");
 
-                dbo.collection("moviedata"), deleteOne(search, function(err, res) {
+                dbo.collection("moviedata").deleteOne(search, function(err, response) {
                     if (err) {
                         return res.status(200).send(JSON.stringify({ msg: "Error: " + err }));
                     } else {

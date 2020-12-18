@@ -9,15 +9,14 @@ app.controller("viewMoviesController", function($scope, $http) {
     $scope.get_movies = function() {
         $http({
             method: "GET",
-            url: "http://localhost:5500/read-records"
+            url: moviesURL + "/read-records"
         }).then(function(response) {
-            if (response.statusText === "OK") {
-                movies = response.data;
+            if (response.data.msg === "SUCCESS") {
+                movies = response.data.moviedata;
                 $scope.obj = movies[activeMovie];
                 $scope.showHide();
             } else {
-                console.log(response);
-                $scope.addResults = response.statusText;
+                $scope.addResults = response.data.msg;
             }
         }, function(response) {
             console.log(response);

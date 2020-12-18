@@ -5,7 +5,6 @@
     <title>View Movies</title>
 
     <meta charset="utf-8">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
     <script src="/client/js/config.js"></script>
     <script src="/client/js/view-movies.js" defer></script>
@@ -38,10 +37,6 @@
 
             <main>
                 <section data-ng-app="viewMoviesApp" data-ng-controller="viewMoviesController" id="viewMoviesApp">
-                    <div>
-                        <label for="ID">ID: </label>
-                        <label id="ID">{{ obj.ID }}</label>
-                    </div>
                     <div>
                         <label for="rank">Rank: </label>
                         <label id="rank">{{ obj.rank }}</label>
