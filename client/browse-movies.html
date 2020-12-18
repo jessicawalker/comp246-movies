@@ -5,7 +5,6 @@
     <title>Browse Movies</title>
 
     <meta charset="utf-8">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
     <script src="/client/js/config.js"></script>
     <script src="/client/js/browse-movies.js" defer></script>
@@ -53,6 +52,7 @@
                                 <th>Rating</th>
                                 <th>Users</th>
                                 <th></th>
+                                <th></th>
                             </tr>
                             <tr data-ng-repeat="obj in movies">
                                 <td>{{ obj.rank }}</td>
@@ -61,6 +61,7 @@
                                 <td>{{ obj.director }}</td>
                                 <td>{{ obj.rating }}</td>
                                 <td>{{ obj.users }}</td>
+                                <td><button data-ng-click="editSpell($index)">EDIT</button></td>
                                 <td><button data-ng-click="deleteMovie(obj.movieTitle)">DELETE</button></td>
                             </tr>
                         </table>
