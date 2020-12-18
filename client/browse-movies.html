@@ -61,7 +61,7 @@
                                 <td>{{ movie.director }}</td>
                                 <td>{{ movie.rating }}</td>
                                 <td>{{ movie.users }}</td>
-                                <td class="update_button"><button data-ng-click="editMovie($index)">EDIT</button></td>
+                                <td class="edit_button"><button data-ng-click="editMovie($index)">EDIT</button></td>
                                 <td class="delete_button"><button data-ng-click="deleteMovie(obj.movieTitle)">DELETE</button></td>
                             </tr>
                         </table>
@@ -101,8 +101,8 @@
                         </div>
                     </div>
 
-                    <div><button ng-data-click="updateMovie()">Update</button></div>
-                    <div><button ng-data-click="closeForm()">Cancel</button></div>
+                    <div class="update_button"><button ng-data-click="updateMovie()">Update</button></div>
+                    <div class="cancel_button"><button ng-data-click="closeForm()">Cancel</button></div>
                 </section>
 
             </main>

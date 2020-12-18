@@ -41,28 +41,6 @@ th:hover {
     cursor: pointer;
 }
 
-.update_button button,
-.delete_button button {
-    border: 1px solid #555;
-    color: #fff;
-    font-size: 0.66em;
-    font-variant: small-caps;
-    font-weight: bold;
-}
-
-.delete_button button {
-    background-color: #c00;
-}
-
-.update_button button {
-    background-color: darkgoldenrod;
-}
-
-.update_button button:hover,
-.delete_button button:hover {
-    cursor: pointer;
-}
-
 tr {
     transition: 400ms;
 }
@@ -92,4 +70,37 @@ tr.removeRow {
 #updateForm input {
     display: block;
     margin-bottom: 1em;
+}
+
+.edit_button button,
+.delete_button button {
+    border: 1px solid #555;
+    color: #fff;
+    font-size: 0.66em;
+    font-variant: small-caps;
+    font-weight: bold;
+}
+
+.delete_button button {
+    background-color: #c00;
+}
+
+.edit_button button {
+    background-color: darkgoldenrod;
+}
+
+.update_button button,
+.cancel_button button {
+    border: 1px solid #555;
+    color: #000;
+    float: left;
+    font-size: 1.25em;
+    margin: 1em 1em 0 0;
+}
+
+.edit_button button:hover,
+.delete_button button:hover,
+.update_button button:hover,
+.cancel_button button:hover {
+    cursor: pointer;
 }
