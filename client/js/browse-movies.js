@@ -71,9 +71,10 @@ app.controller("moviesTableController", function($scope, $http) {
 
         $scope.hideTable = true;
         $scope.hideForm = false;
-    }
+    };
 
     $scope.updateMovie = function(movieNumber) {
+        console.log($scope.movieID);
         $http({
             method: "PUT",
             url: moviesURL + "/update-record",
@@ -87,6 +88,7 @@ app.controller("moviesTableController", function($scope, $http) {
                 users: $scope.users
             }
         }).then(function(response) {
+            console.log(response.data.msg);
             if (response.data.msg === "SUCCESS") {
                 $scope.redrawTable();
                 $scope.closeForm();

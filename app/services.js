@@ -115,9 +115,10 @@ var services = function(app) {
         var rating = req.body.rating;
         var users = req.body.users;
 
-        var s_id = new Object(spellID);
+        var s_id = new Object(movieID);
 
         var search = { _id: s_id };
+        console.log(search);
 
         var updateData = {
             $set: {
@@ -129,6 +130,7 @@ var services = function(app) {
                 users: users
             }
         };
+        console.log(updateData);
 
 
         MongoClient.connect(dbURL, { useUnifiedTopology: true }, function(err, client) {
@@ -137,7 +139,7 @@ var services = function(app) {
             } else {
                 var dbo = client.db("movies");
 
-                dbo.collection("moviedata"), updateOne(search, updateData, function(err) {
+                dbo.collection("moviedata").updateOne(search, updateData, function(err, response) {
                     if (err) {
                         client.close();
                         return res.status(200).send(JSON.stringify({ msg: "Error: " + err }));
