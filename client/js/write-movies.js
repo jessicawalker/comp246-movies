@@ -37,6 +37,7 @@ app.controller("writeMoviesController", function($scope, $http) {
 });
 
 // display data entered by user
+/*
 displayInput();
 
 function displayInput() {
@@ -57,4 +58,4 @@ function displayInput() {
         successMessage += `${entry[0]}: ${entry[1]}`;
     }
     successAdded.innerHTML = successMessage;
-}
+}*/
