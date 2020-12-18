@@ -41,8 +41,8 @@ th:hover {
     cursor: pointer;
 }
 
+.update_button button,
 .delete_button button {
-    background-color: #c00;
     border: 1px solid #555;
     color: #fff;
     font-size: 0.66em;
@@ -50,6 +50,15 @@ th:hover {
     font-weight: bold;
 }
 
+.delete_button button {
+    background-color: #c00;
+}
+
+.update_button button {
+    background-color: darkgoldenrod;
+}
+
+.update_button button:hover,
 .delete_button button:hover {
     cursor: pointer;
 }
@@ -60,4 +69,27 @@ tr {
 
 tr.removeRow {
     transform: scaleY(0);
+}
+
+#updateForm {
+    background-color: lightyellow;
+    border: 1px solid darkgoldenrod;
+    float: left;
+    margin: 30px 30px 30px 0;
+    padding: 2em;
+    width: 30em;
+}
+
+#updateForm label {
+    display: block;
+    float: left;
+    font-weight: bold;
+    padding-right: 1em;
+    text-align: right;
+    width: 7em;
+}
+
+#updateForm input {
+    display: block;
+    margin-bottom: 1em;
 }

@@ -35,9 +35,9 @@
                 <h1>IMDb Top Rated Movies</h1>
             </header>
 
-            <main id="browseMoviesApp">
+            <main id="browseMoviesApp" data-ng-app="moviesTableApp" data-ng-controller="moviesTableController" data-ng-init="hideForm=true">
 
-                <section data-ng-app="moviesTableApp" data-ng-controller="moviesTableController">
+                <section data-ng-hide="hideTable">
                     <div style="margin: 30px auto; text-align:center;">
                         <label for="groupBy">Director: </label>
                         <select id="groupBy" data-ng-model="selectedDirector" data-ng-options="director.display for director in directors" data-ng-change="redrawTable()"></select>
@@ -61,12 +61,48 @@
                                 <td>{{ movie.director }}</td>
                                 <td>{{ movie.rating }}</td>
                                 <td>{{ movie.users }}</td>
-                                <td><button data-ng-click="editMovie($index)">EDIT</button></td>
-                                <td><button data-ng-click="deleteMovie(obj.movieTitle)">DELETE</button></td>
+                                <td class="update_button"><button data-ng-click="editMovie($index)">EDIT</button></td>
+                                <td class="delete_button"><button data-ng-click="deleteMovie(obj.movieTitle)">DELETE</button></td>
                             </tr>
                         </table>
                     </div>
 
+                </section>
+
+                <section data-ng-hide="hideForm" id="updateForm">
+                    <div class="update_fields">
+                        <div>
+                            <label for="rank">Rank:</label>
+                            <input id="rank" data-ng-model="rank">
+                        </div>
+                        <div>
+                            <label for="movieTitle">Movie Title:</label>
+                            <input id="movieTitle" data-ng-model="movieTitle">
+                        </div>
+                        <div>
+                            <label for="effect">Effect:</label>
+                            <input id="effect" data-ng-model="effect">
+                        </div>
+                        <div>
+                            <label for="year">Year:</label>
+                            <input id="year" data-ng-model="year">
+                        </div>
+                        <div>
+                            <label for="director">Director:</label>
+                            <input id="director" data-ng-model="director">
+                        </div>
+                        <div>
+                            <label for="rating">Rating:</label>
+                            <input id="rating" data-ng-model="rating">
+                        </div>
+                        <div>
+                            <label for="users">Users:</label>
+                            <input id="users" data-ng-model="users">
+                        </div>
+                    </div>
+
+                    <div><button ng-data-click="updateMovie()">Update</button></div>
+                    <div><button ng-data-click="closeForm()">Cancel</button></div>
                 </section>
 
             </main>
