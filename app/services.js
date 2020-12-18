@@ -106,7 +106,49 @@ var services = function(app) {
         });
     });
 
-    //app.put();
+    app.put("/update-record", function(req, res) {
+        var movieID = req.body.movieID;
+        var rank = req.body.rank;
+        var movieTitle = req.body.movieTitle;
+        var year = req.body.year;
+        var director = req.body.director;
+        var rating = req.body.rating;
+        var users = req.body.users;
+
+        var s_id = new Object(spellID);
+
+        var search = { _id: s_id };
+
+        var updateData = {
+            $set: {
+                rank: rank,
+                movieTitle: movieTitle,
+                year: year,
+                director: director,
+                rating: rating,
+                users: users
+            }
+        };
+
+
+        MongoClient.connect(dbURL, { useUnifiedTopology: true }, function(err, client) {
+            if (err) {
+                return res.status(200).send(JSON.stringify({ msg: "Error: " + err }));
+            } else {
+                var dbo = client.db("movies");
+
+                dbo.collection("moviedata"), updateOne(search, updateData, function(err) {
+                    if (err) {
+                        client.close();
+                        return res.status(200).send(JSON.stringify({ msg: "Error: " + err }));
+                    } else {
+                        client.close();
+                        return res.status(200).send(JSON.stringify({ msg: "SUCCESS" }));
+                    }
+                });
+            }
+        });
+    });
 };
 
 module.exports = services;
