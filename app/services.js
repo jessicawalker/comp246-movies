@@ -118,7 +118,6 @@ var services = function(app) {
         var s_id = new ObjectId(movieID);
 
         var search = { _id: s_id };
-        console.log(search);
 
         var updateData = {
             $set: {
@@ -130,7 +129,6 @@ var services = function(app) {
                 users: users
             }
         };
-        console.log(updateData);
 
 
         MongoClient.connect(dbURL, { useUnifiedTopology: true }, function(err, client) {
