@@ -57,6 +57,7 @@ var services = function(app) {
         });
     });
 
+    // filter output by director
     app.get("/get-moviesByDirector", function(req, res) {
         var director = req.query.director;
         var search = (director === "") ? {} : { director: director };
@@ -68,6 +69,56 @@ var services = function(app) {
             } else {
                 var dbo = client.db("movies");
 
+                dbo.collection("moviedata").find(search).sort(sortBy).toArray(function(err, data) {
+                    if (err) {
+                        client.close();
+                        return res.status(200).send(JSON.stringify({ msg: "Error: " + err }));
+                    } else {
+                        client.close();
+                        return res.status(200).send(JSON.stringify({ msg: "SUCCESS", moviedata: data }));
+                    }
+                });
+            }
+        });
+    });
+
+    // sort table: 
+    app.get("/sort-records", function(req, res) {
+        var sortByKey = req.query.sortByKey;
+        var director = req.query.director;
+        var search = (director === "") ? {} : { director: director };
+        var sortBy;
+
+        switch (sortByKey) {
+            case "rank":
+                sortBy = { rank: 1 };
+                break;
+            case "movieTitle":
+                sortBy = { movieTitle: 1 };
+                break;
+            case "year":
+                sortBy = { year: 1 };
+                break;
+            case "director":
+                sortBy = { director: 1 };
+                break;
+            case "rating":
+                sortBy = { rating: 1 };
+                break;
+            case "users":
+                sortBy = { users: 1 };
+                break;
+            default:
+                break;
+        }
+
+        MongoClient.connect(dbURL, { useUnifiedTopology: true }, function(err, client) {
+            if (err) {
+                return res.status(200).send(JSON.stringify({ msg: "Error: " + err }));
+            } else {
+                var dbo = client.db("movies");
+
+                //dbo.collection("moviedata").find(search).sort(sortBy).toArray(function(err, data) {
                 dbo.collection("moviedata").find(search).sort(sortBy).toArray(function(err, data) {
                     if (err) {
                         client.close();

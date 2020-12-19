@@ -5,6 +5,7 @@ var app = angular.module("moviesTableApp", []);
 app.controller("moviesTableController", function($scope, $http) {
     $scope.moviedata = [];
     $scope.directors = [];
+    $scope.sortBy = [{ value: "rank", display: "Rank" }, { value: "movieTitle", display: "Movie Title" }, { value: "year", display: "Year" }, { value: "director", display: "Director" }, { value: "rating", display: "Rating" }, { value: "users", display: "Users" }];
 
     $scope.get_movies = function() {
         $http({
@@ -16,6 +17,7 @@ app.controller("moviesTableController", function($scope, $http) {
                 $scope.moviedata = response.data.moviedata;
                 $scope.directors = getDirectors(response.data.moviedata);
                 $scope.selectedDirector = $scope.directors[0];
+                $scope.selectedSortBy = $scope.sortBy[0];
             } else {
                 console.log(response.data.msg);
             }
@@ -33,6 +35,26 @@ app.controller("moviesTableController", function($scope, $http) {
             method: "GET",
             url: moviesURL + "/get-moviesByDirector",
             params: { director: director }
+        }).then(function(response) {
+            if (response.data.msg === "SUCCESS") {
+                $scope.moviedata = response.data.moviedata;
+                $scope.selectedSortBy = $scope.sortBy[0];
+            } else {
+                console.log(response.data.msg);
+            }
+        }, function(response) {
+            console.log(response);
+        });
+    };
+
+    $scope.sortTable = function() {
+        var sortByValue = $scope.selectedSortBy.value;
+        var director = $scope.selectedDirector.value;
+
+        $http({
+            method: "GET",
+            url: moviesURL + "/sort-records",
+            params: { sortByKey: sortByValue, director: director }
         }).then(function(response) {
             if (response.data.msg === "SUCCESS") {
                 $scope.moviedata = response.data.moviedata;
@@ -119,6 +141,8 @@ function getDirectors(movieDataArray) {
     var directorsArray = [{ value: "", display: "ALL" }];
     for (var i = 0; i < movieDataArray.length; i++) {
         directorExists = directorsArray.find(function(element) {
+            //console.log("Element Value: " + element.value);
+            //console.log("Element Field: " + element.field);
             return element.value === movieDataArray[i].director;
         });
 
