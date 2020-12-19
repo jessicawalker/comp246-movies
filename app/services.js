@@ -118,7 +118,6 @@ var services = function(app) {
             } else {
                 var dbo = client.db("movies");
 
-                //dbo.collection("moviedata").find(search).sort(sortBy).toArray(function(err, data) {
                 dbo.collection("moviedata").find(search).sort(sortBy).toArray(function(err, data) {
                     if (err) {
                         client.close();
