@@ -61,7 +61,7 @@ var services = function(app) {
     app.get("/get-moviesByDirector", function(req, res) {
         var director = req.query.director;
         var search = (director === "") ? {} : { director: director };
-        var sortBy = { rank: 1 };
+        var sortBy = { rank: 1 }; // go back to default sort
 
         MongoClient.connect(dbURL, { useUnifiedTopology: true }, function(err, client) {
             if (err) {
@@ -82,7 +82,7 @@ var services = function(app) {
         });
     });
 
-    // sort table: 
+    // sort table by field, including director filter if present
     app.get("/sort-records", function(req, res) {
         var sortByKey = req.query.sortByKey;
         var director = req.query.director;
@@ -103,10 +103,10 @@ var services = function(app) {
                 sortBy = { director: 1 };
                 break;
             case "rating":
-                sortBy = { rating: 1 };
+                sortBy = { rating: -1 };
                 break;
             case "users":
-                sortBy = { users: 1 };
+                sortBy = { users: -1 };
                 break;
             default:
                 break;
