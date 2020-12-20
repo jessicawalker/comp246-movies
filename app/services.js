@@ -1,7 +1,7 @@
 const MongoClient = require("mongodb").MongoClient;
 const ObjectId = require("mongodb").ObjectId;
 
-const dbURL = process.env.DB_URI || "mongodb+srv://jessicaawalker:Len4Macca0627@cluster0.aocuq.mongodb.net/movies?retryWrites=true&w=majority" || "mongodb://localhost";
+const dbURL = process.env.DB_URI || "mongodb+srv://jessicaawalker:Len4Macca0627@cluster0.aocuq.mongodb.net/movies?retryWrites=true&w=majority";
 
 
 // Service listeners
