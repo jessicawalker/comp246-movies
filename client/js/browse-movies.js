@@ -97,13 +97,13 @@ app.controller("moviesTableController", function($scope, $http) {
             method: "PUT",
             url: moviesURL + "/update-record",
             data: {
-                movieID: $scope.movieID,
-                rank: $scope.rank,
-                movieTitle: $scope.movieTitle,
-                year: $scope.year,
-                director: $scope.director,
-                rating: $scope.rating,
-                users: $scope.users
+                "movieID": $scope.movieID,
+                "rank": $scope.rank,
+                "movieTitle": $scope.movieTitle,
+                "year": $scope.year,
+                "director": $scope.director,
+                "rating": $scope.rating,
+                "users": $scope.users
             }
         }).then(function(response) {
             if (response.data.msg === "SUCCESS") {
