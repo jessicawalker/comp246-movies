@@ -38,15 +38,15 @@
             <main id="browseMoviesApp" data-ng-app="moviesTableApp" data-ng-controller="moviesTableController" data-ng-init="hideForm=true">
 
                 <section data-ng-hide="hideTable">
-                    <div style="margin: 30px auto; text-align:center;">
+                    <div class="filters">
                         <label for="groupBy">Director: </label>
                         <select id="groupBy" data-ng-model="selectedDirector" data-ng-options="director.display for director in directors" data-ng-change="redrawTable()"></select>
                     </div>
-                    <div style="margin: 30px auto; text-align:center;">
+                    <div class="filters">
                         <label for="sortBy">Sort By: </label>
                         <select id="sortBy" data-ng-model="selectedSortBy" data-ng-options="field.display for field in sortBy" data-ng-change="sortTable()"></select>
                     </div>
-                    <div>
+                    <div class="data-display">
                         <table>
                             <tr>
                                 <th>Rank</th>

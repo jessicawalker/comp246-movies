@@ -14,8 +14,12 @@ thead {
 
 td,
 th {
-    padding: 8px 12px;
     border-bottom: 1px solid darkgoldenrod;
+    padding: 8px 12px;
+}
+
+th {
+    background-color: yellow;
 }
 
 tr:nth-of-type(even) {
@@ -35,10 +39,6 @@ td:nth-of-type(7) {
 
 tr:hover {
     background-color: yellow;
-}
-
-th:hover {
-    cursor: pointer;
 }
 
 tr {
@@ -103,4 +103,23 @@ tr.removeRow {
 .update_button button:hover,
 .cancel_button button:hover {
     cursor: pointer;
+}
+
+.filters {
+    display: inline-block;
+    font-weight: bold;
+    margin: 20px 30px 10px 0;
+}
+
+.filters select {
+    font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+    padding: 3px;
+}
+
+.filters label {
+    padding-right: 7px;
+}
+
+.data-display {
+    clear: both;
 }
