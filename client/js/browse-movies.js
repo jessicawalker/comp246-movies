@@ -144,9 +144,13 @@ function getDirectors(movieDataArray) {
         if (directorExists) {
             continue;
         } else {
-            directorsArray.push({ value: movieDataArray[i].director, display: movieDataArray[i].director });
+            var fullName = movieDataArray[i].director;
+            var firstName = fullName.split(' ').slice(0, -1).join(' ');
+            var lastName = fullName.split(' ').slice(-1).join(' ');
+            var directorBySurname = lastName + ", " + firstName;
+            directorsArray.push({ value: movieDataArray[i].director, display: directorBySurname });
         }
     }
-
+    directorsArray.sort((a, b) => (a.display > b.display) ? 1 : -1);
     return directorsArray;
 }
