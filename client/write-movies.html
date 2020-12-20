@@ -37,7 +37,7 @@
             </header>
 
             <main>
-                <section data-ng-app="writeMoviesApp" data-ng-controller="writeMoviesController" id="writeMoviesApp">
+                <section data-ng-app="writeMoviesApp" data-ng-controller="writeMoviesController" data-ng-init="hideSuccess=true" id="writeMoviesApp">
                     <p>Reference <a href="https://www.imdb.com/chart/top/" target="_blank">IMDb's Top 250 Movies</a> to add movie data.</p>
                     <form>
                         <div>
@@ -68,8 +68,8 @@
                             <button id="data-submit" data-ng-click="submitMovie()">Submit Movie</button>
                         </div>
                     </form>
-                    <div id="success-added">
-                        {{ addResults }}
+                    <div id="successAdded" data-ng-hide="hideSuccess" ng-cloak>
+                        <pre>{{ addResults }}</pre>
                     </div>
                 </section>
             </main>

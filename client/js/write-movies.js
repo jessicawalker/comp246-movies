@@ -20,13 +20,21 @@ app.controller("writeMoviesController", function($scope, $http) {
                 return;
             }
             if (response.statusText === "OK") {
+                $scope.addResults = "Movie record successfully added:\n" +
+                    "\nRank: " + $scope.rank +
+                    "\nMovie Title: " + $scope.movieTitle +
+                    "\nYear: " + $scope.year +
+                    "\nDirector: " + $scope.director +
+                    "\nRating: " + $scope.rating +
+                    "\nUsers: " + $scope.users;
                 $scope.rank = "";
                 $scope.movieTitle = "";
                 $scope.year = "";
                 $scope.director = "";
                 $scope.rating = "";
                 $scope.users = "";
-                $scope.addResults = "Movie record successfully added.";
+                $scope.hideSuccess = false;
+
             } else {
                 $scope.addResults = response.statusText;
             }
@@ -35,27 +43,3 @@ app.controller("writeMoviesController", function($scope, $http) {
         });
     };
 });
-
-// display data entered by user
-/*
-displayInput();
-
-function displayInput() {
-    var successAdded = document.getElementById("success-added");
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    var successMessage = "Movie record successfully added:<br>";
-
-    // don't display box if nothing has been submitted
-    if (urlParams.has("rank")) {
-        successAdded.style.opacity = "1";
-    }
-
-    //const values = urlParams.values()
-    var entries = urlParams.entries();
-    for (var entry of entries) {
-        successMessage += "<br>\n";
-        successMessage += `${entry[0]}: ${entry[1]}`;
-    }
-    successAdded.innerHTML = successMessage;
-}*/
