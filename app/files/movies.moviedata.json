@@ -1,0 +1,181 @@
+[{
+        "_id": "5fda72c0c70b09924c0337ed",
+        "rank": 1,
+        "movieTitle": "Shawshank Redemption",
+        "year": 1994,
+        "director": "Frank Darabont",
+        "rating": "9.2",
+        "users": 2303289
+    },
+    {
+        "_id": "5fda74055af43c84348011d1",
+        "rank": 2,
+        "movieTitle": "The Godfather",
+        "year": 1972,
+        "director": "Francis Ford Coppola",
+        "rating": "9.1",
+        "users": 1589679
+    },
+    {
+        "_id": "5fda74a1a702fe363cac1e32",
+        "rank": 3,
+        "movieTitle": "The Godfather: Part II",
+        "year": 1974,
+        "director": "Francis Ford Coppola",
+        "rating": "9.0",
+        "users": 1110691
+    },
+    {
+        "_id": "5fdd7f7dcb6efa52dc31668d",
+        "rank": 4,
+        "movieTitle": "The Dark Knight",
+        "year": 2008,
+        "director": "Christopher Nolan",
+        "rating": "9.0",
+        "users": 2266883
+    },
+    {
+        "_id": "5fdd7fa0cb6efa52dc31668e",
+        "rank": 5,
+        "movieTitle": "12 Angry Men",
+        "year": 1957,
+        "director": "Sidney Lumet",
+        "rating": "8.9",
+        "users": 676987
+    },
+    {
+        "_id": "5fdd7fc3cb6efa52dc31668f",
+        "rank": 6,
+        "movieTitle": "Schindler's List",
+        "year": 1993,
+        "director": "Steven Spielberg",
+        "rating": "8.9",
+        "users": 1195199
+    },
+    {
+        "_id": "5fdd7fe8cb6efa52dc316690",
+        "rank": 7,
+        "movieTitle": "The Lord of the Rings: The Return of the King",
+        "year": 2003,
+        "director": "Peter Jackson",
+        "rating": "8.9",
+        "users": 1618473
+    },
+    {
+        "_id": "5fdd8005cb6efa52dc316691",
+        "rank": 8,
+        "movieTitle": "Pulp Fiction",
+        "year": 1994,
+        "director": "Quentin Tarantino",
+        "rating": "8.8",
+        "users": 1798071
+    },
+    {
+        "_id": "5fdd8028cb6efa52dc316692",
+        "rank": 9,
+        "movieTitle": "The Good, the Bad and the Ugly",
+        "year": 1966,
+        "director": "Sergio Leone",
+        "rating": "8.8",
+        "users": 678856
+    },
+    {
+        "_id": "5fdd85e6cb6efa52dc316693",
+        "rank": 10,
+        "movieTitle": "The Lord of the Rings: The Fellowship of the Ring",
+        "year": 2001,
+        "director": "Peter Jackson",
+        "rating": "8.8",
+        "users": 1634298
+    },
+    {
+        "_id": "5fded024ce8d1b57dcb3e5ae",
+        "rank": 11,
+        "movieTitle": "Fight Club",
+        "year": 1999,
+        "director": "David Fincher",
+        "rating": "8.8",
+        "users": 1837419
+    },
+    {
+        "_id": "5fded172ce8d1b57dcb3e5af",
+        "rank": 12,
+        "movieTitle": "Forrest Gump",
+        "year": 1994,
+        "director": "Robert Zemeckis",
+        "rating": "8.8",
+        "users": 1788836
+    },
+    {
+        "_id": "5fded225ce8d1b57dcb3e5b0",
+        "rank": 13,
+        "movieTitle": "Inception",
+        "year": 2010,
+        "director": "Christopher Nolan",
+        "rating": "8.7",
+        "users": 2044961
+    },
+    {
+        "_id": "5fded390ce8d1b57dcb3e5b1",
+        "rank": 14,
+        "movieTitle": "The Lord of the Rings: The Two Towers",
+        "year": 2002,
+        "director": "Peter Jackson",
+        "rating": "8.7",
+        "users": 1471995
+    },
+    {
+        "_id": "5fded3d0ce8d1b57dcb3e5b2",
+        "rank": 15,
+        "movieTitle": "Star Wars: Episode V - The Empire Strikes Back",
+        "year": 1980,
+        "director": "Irvin Kershner",
+        "rating": "8.7",
+        "users": 1148747
+    },
+    {
+        "_id": "5fded492ce8d1b57dcb3e5b3",
+        "rank": 16,
+        "movieTitle": "The Matrix",
+        "year": 1999,
+        "director": "Lana Wachowski, Lilly Wachowski",
+        "rating": "8.6",
+        "users": 1659927
+    },
+    {
+        "_id": "5fded519ce8d1b57dcb3e5b4",
+        "rank": 17,
+        "movieTitle": "Goodfellas",
+        "year": 1990,
+        "director": "Martin Scorsese",
+        "rating": "8.6",
+        "users": 1009960
+    },
+    {
+        "_id": "5fded560ce8d1b57dcb3e5b5",
+        "rank": 18,
+        "movieTitle": "One Flew Over the Cuckoo's Nest",
+        "year": 1975,
+        "director": "Milos Forman",
+        "rating": "8.6",
+        "users": 910468
+    },
+    {
+        "_id": "5fded58cce8d1b57dcb3e5b6",
+        "rank": 19,
+        "movieTitle": "Seven Samurai",
+        "year": 1954,
+        "director": "Akira Kurosawa",
+        "rating": "8.6",
+        "users": 313173
+    },
+    {
+        "_id": "5fded5b5ce8d1b57dcb3e5b7",
+        "rank": 20,
+        "movieTitle": "Se7en",
+        "year": 1995,
+        "director": "David Fincher",
+        "rating": "8.6",
+        "users": 1429707
+    }
+]
